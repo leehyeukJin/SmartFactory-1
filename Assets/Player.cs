@@ -8,11 +8,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 2;
-    public Transform destination;
     public float distanceLimit = 0.3f;
-    public Timer timer;
+    public float startTime = 2;
     float arrivalTime = 0;
-    bool isArrived = false;
+    float currentTime;
+    public Transform destination;
+    public Sensor sensor;
+    public Timer timer;
 
     void Start()
     {
@@ -21,25 +23,32 @@ public class Player : MonoBehaviour
     // 프레임이 갱신될 때 실행되는 메서드 0.002 ~ 0.004초에 한번씩 실행
     void Update() 
     {
-        if(!isArrived)
+
+        if (sensor.isObjectDetected)
         {
-            Vector3 direction = Vector3.back;
+            currentTime += Time.deltaTime;
 
-            // 현 위치에서부터 destination까지의 벡터
-            Vector3 dir2Dest = (destination.position - transform.position).normalized;
-            float distance = (destination.position - transform.position).magnitude;
-
-            if(distance > distanceLimit)
+            if(currentTime > startTime)
             {
-                transform.position += dir2Dest * Time.deltaTime * speed;
-            }
-            else
-            {
-                isArrived = true;
+                // 현 위치에서부터 destination까지의 벡터
+                Vector3 dir2Dest = (destination.position - transform.position).normalized;
+                float distance = (destination.position - transform.position).magnitude;
 
-                // 도착 시 알림
-                arrivalTime = timer.currentTime;
-                print("도착시간: " + arrivalTime);
+                if (distance > distanceLimit)
+                {
+                    transform.position += dir2Dest * Time.deltaTime * speed;
+                }
+                else
+                {
+                    sensor.isObjectDetected = false;
+                    GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                    // 도착 시 알림
+                    arrivalTime = timer.currentTime;
+                    print("도착시간: " + arrivalTime);
+
+                    currentTime = 0;
+                }
             }
         }
     }
