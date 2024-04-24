@@ -26,16 +26,16 @@ public class Player : MonoBehaviour
         
         transform.position += direction * Time.deltaTime * speed;
         
-        print("Space Button Pressed!");
-        GameObject obj = Instantiate(sphere);
-        float randX = UnityEngine.Random.Range(0.0f, 1.0f);
-        float randY = UnityEngine.Random.Range(0.0f, 1.0f);
-        float randZ = UnityEngine.Random.Range(0.0f, 1.0f);
-        obj.transform.position = new Vector3(randX, randY, randZ);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            print("Space Button Pressed!");
 
+            GameObject obj = Instantiate(sphere);
+            float randX = UnityEngine.Random.Range(0.0f, 1.0f);
+            float randY = UnityEngine.Random.Range(0.0f, 1.0f);
+            float randZ = UnityEngine.Random.Range(0.0f, 1.0f);
+            obj.transform.position = new Vector3(randX, randY, randZ);
         }
     }
 }
