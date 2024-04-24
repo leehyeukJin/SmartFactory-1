@@ -3,39 +3,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// 시작시 Player가 뒤 방향으로 이동한다.
 public class Player : MonoBehaviour
 {
     public float speed = 2;
-    public GameObject sphere;
+    public Transform destination;
+    public float distanceLimit = 0.3f;
+    public Timer timer;
+    float arrivalTime = 0;
+    bool isArrived = false;
 
     void Start()
     {
-
     }
 
-    void Update()
+    // 프레임이 갱신될 때 실행되는 메서드 0.002 ~ 0.004초에 한번씩 실행
+    void Update() 
     {
-        // GetAxis: 방향키 좌우 or A, D 키입력 값을 반환
-        float h = Input.GetAxis("Horizontal"); // -1~1
-        float v = Input.GetAxis("Vertical");
-
-        //transform.Translate(Vector3.right * Time.deltaTime * speed);
-        // Vector3 direction = (Vector3.right * h) + (Vector3.forward * v); // (1, 0, 0) * -1 = (-1, 0, 0)
-                            // x(좌우), y(앞뒤), z(위아래)
-        Vector3 direction = new Vector3 (h, 0, v);
-        
-        transform.position += direction * Time.deltaTime * speed;
-        
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(!isArrived)
         {
-            print("Space Button Pressed!");
+            Vector3 direction = Vector3.back;
 
-            GameObject obj = Instantiate(sphere);
-            float randX = UnityEngine.Random.Range(0.0f, 1.0f);
-            float randY = UnityEngine.Random.Range(0.0f, 1.0f);
-            float randZ = UnityEngine.Random.Range(0.0f, 1.0f);
-            obj.transform.position = new Vector3(randX, randY, randZ);
+            // 현 위치에서부터 destination까지의 벡터
+            Vector3 dir2Dest = (destination.position - transform.position).normalized;
+            float distance = (destination.position - transform.position).magnitude;
+
+            if(distance > distanceLimit)
+            {
+                transform.position += dir2Dest * Time.deltaTime * speed;
+            }
+            else
+            {
+                isArrived = true;
+
+                // 도착 시 알림
+                arrivalTime = timer.currentTime;
+                print("도착시간: " + arrivalTime);
+            }
+        }
+    }
+
+    // 충돌이 시작되었을 때 실행되는 함수
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Object")) 
+        {
+            print(collision.gameObject.name + "에 충돌이 시작되었습니다.");
+        }
+    }
+
+    // 충돌이 진행 중 실행되는 함수
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Object"))
+        {
+            print(collision.gameObject.name + "에 붙어있습니다.");
+        }
+    }
+
+    // 충돌이 끝났을 때 실행되는 함수
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Object"))
+        {
+            print(collision.gameObject.name + "에 충돌이 끝났습니다.");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Object"))
+        {
+            print("OnTriggerEnter");
         }
     }
 }
