@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 45b27cfd5d37e184187f4670c5b89bbd
+guid: 53611bf1a0bd17e48b9d5b2ccd56a0fc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Model_26_m
-    second: {fileID: 2100000, guid: 56df8a31b158fcb40bb1eda4c51feb6e, type: 2}
+      name: CH400400_mat
+    second: {fileID: 2100000, guid: 55825a3c9d4b96042bf8e23d52797b4d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -21,8 +21,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -159,14 +157,6 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: Neck
-      humanName: Head
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     - boneName: ShoulderLeft
       humanName: LeftShoulder
       limit:
@@ -231,16 +221,8 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: HairLeft1_
-      humanName: LeftEye
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
-    - boneName: HairRight1_
-      humanName: RightEye
+    - boneName: Neck
+      humanName: Head
       limit:
         min: {x: 0, y: 0, z: 0}
         max: {x: 0, y: 0, z: 0}
@@ -248,18 +230,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Model_female_01(Clone)
+    - name: Model_14(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Model_26
-      parentName: Model_female_01(Clone)
+    - name: Model_14
+      parentName: Model_14(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: joint_grp
-      parentName: Model_female_01(Clone)
+      parentName: Model_14(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -281,26 +263,6 @@ ModelImporter:
     - name: Neck
       parentName: Chest
       position: {x: 0.00037969297, y: 0.16422418, z: -0.018412283}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: HairLeft1_
-      parentName: Neck
-      position: {x: -0.13447563, y: 0.27956852, z: -0.059949372}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: HairLeft2_
-      parentName: HairLeft1_
-      position: {x: -0.08164781, y: -0.14416428, z: -0.04472249}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: HairRight1_
-      parentName: Neck
-      position: {x: 0.1344753, y: 0.27956894, z: -0.059949324}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: HairRight2_
-      parentName: HairRight1_
-      position: {x: 0.08164799, y: -0.14416, z: -0.044722598}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ShoulderLeft
@@ -383,12 +345,12 @@ ModelImporter:
       position: {x: -0.0037858195, y: -0.28178847, z: -0.027394133}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    armTwist: 0.505
+    armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
     legTwist: 0.5
     armStretch: 0.05
-    legStretch: 0.055
+    legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
     rootMotionBoneName: 

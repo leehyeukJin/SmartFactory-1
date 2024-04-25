@@ -12,6 +12,11 @@ public class Sensor : MonoBehaviour
         {
             isObjectDetected = true;
 
+            if(GetComponent<MeshRenderer>() != null && GetComponent<MeshRenderer>().isVisible)
+            {
+                GetComponent<MeshRenderer>().material.color = Color.green;
+            }
+
             if(this.gameObject.layer == LayerMask.NameToLayer("Destination"))
             {
                 print(this.gameObject.name);
