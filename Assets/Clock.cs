@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
 
 // 실습1. time.deltaTime과 Quaternion을 이용한 을 이용한 시계 만들기
 // Start함수에서 DateTime.Now로 현재시간 초기화
@@ -63,9 +64,9 @@ public class Clock : MonoBehaviour
             print($"현재시간: {hour}:{minute}:{second}");
             print($"시계바늘 각도: {angleHour}/{angleMin}/{angleSec}");
 
-            hourHand.transform.rotation = Quaternion.Euler( 0, 0, -angleHour );
-            minHand.transform.rotation = Quaternion.Euler( 0, 0, -angleMin );
-            secHand.transform.rotation = Quaternion.Euler( 0, 0, -angleSec );
+            hourHand.transform.localRotation = Quaternion.Euler( 0, 0, -angleHour );
+            minHand.transform.localRotation = Quaternion.Euler( 0, 0, -angleMin );
+            secHand.transform.localRotation = Quaternion.Euler( 0, 0, -angleSec );
         }
     }
 
