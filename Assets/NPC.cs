@@ -6,10 +6,18 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public Transform destination;
-    public int status = 0; // 0: Idle, 1: Walk, 2: Run
+    //public int status = 0; // 0: Idle, 1: Walk, 2: Run
     public float speed = 3f;
     public float range = 0.5f;
     Animator animator;
+
+    public enum Status
+    {
+        IDLE,
+        WALK,
+        PUSHBUTTON
+    }
+    public Status status = Status.IDLE;
 
     private void Start()
     {
@@ -18,17 +26,17 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(status)
+        switch(status) // FSM
         {
-            case 0:
-                animator.SetInteger("Status", 0);
+            case Status.IDLE:
+                animator.SetInteger("Status", (int)Status.IDLE);
                 break;
-            case 1:
-                animator.SetInteger("Status", 1);
+            case Status.WALK:
+                animator.SetInteger("Status", (int)Status.WALK);
                 Move(destination);
                 break;
-            case 2:
-                animator.SetInteger("Status", 2);
+            case Status.PUSHBUTTON:
+                animator.SetInteger("Status", (int)Status.PUSHBUTTON);
                 break;
         }
     }
@@ -40,19 +48,17 @@ public class NPC : MonoBehaviour
 
         if(distance < range)
         {
-            print(distance);
-
             // Button Click Animation 시작
-            status = 2;
+            status = Status.PUSHBUTTON;
             print("클릭!");
         }
 
         transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, transform.position.y, direction.z));
-        transform.position += new Vector3(direction.x, transform.position.y, direction.y) * Time.deltaTime * speed;
+        transform.position += new Vector3(direction.x, transform.position.y, direction.z) * Time.deltaTime * speed;
     }
 
     void OnMoveButtonClickEvent()
     {
-        status = 1;
+        status = Status.WALK;
     }
 }

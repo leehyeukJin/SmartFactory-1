@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,26 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public float currentTime = 0;
+    bool isFunction1Active = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        // StartCoroutine(CoExecuteSequnce());
+        StartCoroutine("CoExecuteSequnce");
+    }
+
+    // Coroutine 함수: 여러가지 작업을 함께 진행하기위해 사용하는 C#의 기능
+    IEnumerator CoExecuteSequnce()
+    {
+        yield return new WaitForSeconds(0.5f); // thread.sleep(2000)과 같은 2초 지연
+
+        CheckTime();
+
+        yield return new WaitForSeconds(0.5f);
+
+        CheckTime();
+
+        yield return null;
     }
 
     // Update is called once per frame
@@ -19,6 +35,14 @@ public class Timer : MonoBehaviour
     {
         currentTime += Time.deltaTime;
 
-        //print("경과 시간: " + currentTime);
+        //if(currentTime > 2)
+        //{
+        //    CheckTime();
+        //}
+    }
+
+    private void CheckTime()
+    {
+        print("경과 시간: " + currentTime); ;
     }
 }

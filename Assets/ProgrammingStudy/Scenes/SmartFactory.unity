@@ -11708,9 +11708,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 104732307}
-  status: 1
   speed: 3
   range: 3
+  status: 0
 --- !u!1001 &436085414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67561,7 +67561,7 @@ PrefabInstance:
     - target: {fileID: 2941428190202080603, guid: 61842b74e56f39540ad7dfd7815ef138,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.89
+      value: 9.03
       objectReference: {fileID: 0}
     - target: {fileID: 2941428190202080603, guid: 61842b74e56f39540ad7dfd7815ef138,
         type: 3}
@@ -67571,7 +67571,7 @@ PrefabInstance:
     - target: {fileID: 2941428190202080603, guid: 61842b74e56f39540ad7dfd7815ef138,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.18
+      value: 21.13
       objectReference: {fileID: 0}
     - target: {fileID: 2941428190202080603, guid: 61842b74e56f39540ad7dfd7815ef138,
         type: 3}
