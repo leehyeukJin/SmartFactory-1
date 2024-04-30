@@ -15,8 +15,8 @@ TagManager:
   - Object
   - Destination
   - Button
-  - 
-  - 
+  - MetalObject
+  - NonMetalObject
   - 
   - 
   - 
