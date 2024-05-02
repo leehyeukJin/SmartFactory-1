@@ -22,6 +22,9 @@ public class Piston : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DeviceInfo info = new DeviceInfo("╫ееб©М", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
+
+
         SetActiveLampDirection(!isForward, true);
 
         minPos = new Vector3(pistonRod.transform.localPosition.x, minRange, pistonRod.transform.localPosition.z);
