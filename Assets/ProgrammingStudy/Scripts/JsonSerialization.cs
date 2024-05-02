@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -7,14 +7,15 @@ using Newtonsoft.Json.Linq;
 
 public class DeviceInfo
 {
-    public string name;
-    public string serialNumber;
-    public int operationTime;
-    public int operationCount;
-    public string freeWarrenty;
-    public string paidWarrenty;
+    public string name;             // ì†¡ì¶œì‹¤ë¦°ë”
+    public string serialNumber;     // ì‹¤ë¦°ë”A
+    public int operationTime;       // Playë²„íŠ¼ ëˆ„ë¥¸ í›„ì˜ ëˆ„ì ì‹œê°„
+    public int operationCount;      // ì‹¤ë¦°ë” ì „í›„ì§„ íšŸìˆ˜
+    public string freeWarrenty;     // í•˜ë“œì›¨ì–´ ë¬´ìƒ ë³´ì¦ê¸°ê°„
+    public string paidWarrenty;     // í•˜ë“œì›¨ì–´ ìœ ìƒ ë³´ì¦ê¸°ê°„
 
-    public DeviceInfo(string name, string serialNumber, int operationTime, int operationCount, string freeWarrenty, string paidWarrenty)
+    public DeviceInfo(string name, string serialNumber, int operationTime,
+        int operationCount, string freeWarrenty, string paidWarrenty)
     {
         this.name = name;
         this.serialNumber = serialNumber;
@@ -28,6 +29,7 @@ public class DeviceInfo
 public class JsonSerialization : MonoBehaviour
 {
     public static JsonSerialization Instance;
+    public List<DeviceInfo> devices = new List<DeviceInfo>();
 
     // Object(Class) -> JSON
     public class Person
@@ -48,30 +50,30 @@ public class JsonSerialization : MonoBehaviour
             Instance = this;
     }
 
-    // ¹öÆ°À» ´©¸£¸é, ¸ğµç deviceÀÇ Á¤º¸¸¦ Àü´ŞÇÑ´Ù.
+    // ë²„íŠ¼ì„ ëˆ„ë¥´ë©´, ëª¨ë“  deviceì˜ ì •ë³´ë¥¼ ì „ë‹¬í•œë‹¤.
 
     // Start is called before the first frame update
     void Start()
     {
-        // ´ÜÀÏ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â ¹æ¹ı
-        DeviceInfo info = new DeviceInfo("½ÅÅÂ¿í", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
+        // ë‹¨ì¼ ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” ë°©ë²•
+        DeviceInfo info = new DeviceInfo("ì‹ íƒœìš±", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
 
-        string json = JsonUtility.ToJson(info); // Á÷·ÄÈ­(serialization)
+        string json = JsonUtility.ToJson(info); // ì§ë ¬í™”(serialization)
         print(json);
 
-        FileStream fs = new FileStream("Assets/file.json", FileMode.Create); // ÆÄÀÏÀ» ¿­°í, ´İ´Â ±âº»ÀûÀÎ ÀÔÃâ·Â ±â´É
-        StreamWriter sw = new StreamWriter(fs); // ¹®ÀÚ ´ÜÀ§·Î µ¥ÀÌÅÍ ¾²±â, ÀÎÄÚµù Ã³¸®
+        FileStream fs = new FileStream("Assets/file.json", FileMode.Create); // íŒŒì¼ì„ ì—´ê³ , ë‹«ëŠ” ê¸°ë³¸ì ì¸ ì…ì¶œë ¥ ê¸°ëŠ¥
+        StreamWriter sw = new StreamWriter(fs); // ë¬¸ì ë‹¨ìœ„ë¡œ ë°ì´í„° ì“°ê¸°, ì¸ì½”ë”© ì²˜ë¦¬
         sw.Write(json);
         sw.Close();
         fs.Close();
 
 
-        // ¿©·¯°³ÀÇ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â ¹æ¹ı
-        DeviceInfo info1 = new DeviceInfo("½ÅÅÂ¿í", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
-        DeviceInfo info2 = new DeviceInfo("½ÅÅÂ¿í1", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
-        DeviceInfo info3 = new DeviceInfo("½ÅÅÂ¿í2", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
-        DeviceInfo info4 = new DeviceInfo("½ÅÅÂ¿í3", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
-        DeviceInfo info5 = new DeviceInfo("½ÅÅÂ¿í4", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
+        // ì—¬ëŸ¬ê°œì˜ ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” ë°©ë²•
+        DeviceInfo info1 = new DeviceInfo("ì‹ íƒœìš±", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
+        DeviceInfo info2 = new DeviceInfo("ì‹ íƒœìš±1", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
+        DeviceInfo info3 = new DeviceInfo("ì‹ íƒœìš±2", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
+        DeviceInfo info4 = new DeviceInfo("ì‹ íƒœìš±3", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
+        DeviceInfo info5 = new DeviceInfo("ì‹ íƒœìš±4", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
         List<DeviceInfo> devices = new List<DeviceInfo>();
         devices.Add(info1);
         devices.Add(info2);
@@ -82,19 +84,19 @@ public class JsonSerialization : MonoBehaviour
         string json2 = JsonConvert.SerializeObject(devices);
         print(json2);
 
-        fs = new FileStream("Assets/file2.json", FileMode.Create); // ÆÄÀÏÀ» ¿­°í, ´İ´Â ±âº»ÀûÀÎ ÀÔÃâ·Â ±â´É
-        sw = new StreamWriter(fs); // ¹®ÀÚ ´ÜÀ§·Î µ¥ÀÌÅÍ ¾²±â, ÀÎÄÚµù Ã³¸®
+        fs = new FileStream("Assets/file2.json", FileMode.Create); // íŒŒì¼ì„ ì—´ê³ , ë‹«ëŠ” ê¸°ë³¸ì ì¸ ì…ì¶œë ¥ ê¸°ëŠ¥
+        sw = new StreamWriter(fs); // ë¬¸ì ë‹¨ìœ„ë¡œ ë°ì´í„° ì“°ê¸°, ì¸ì½”ë”© ì²˜ë¦¬
         sw.Write(json2);
         sw.Close();
         fs.Close();
 
-        // DeviceInfo¶ó´Â ÄÁÅ×ÀÌ³Ê Å¬·¡½ºÀÇ ¸ğ¾çÀ» ¾Ë°í ÀÖÀ» °æ¿ì »ç¿ë
+        // DeviceInfoë¼ëŠ” ì»¨í…Œì´ë„ˆ í´ë˜ìŠ¤ì˜ ëª¨ì–‘ì„ ì•Œê³  ìˆì„ ê²½ìš° ì‚¬ìš©
         List<DeviceInfo> newDevices = new List<DeviceInfo>();
         newDevices = JsonConvert.DeserializeObject<List<DeviceInfo>>(json2);
-        DeviceInfo deviceFound = newDevices.Find(x => x.name == "½ÅÅÂ¿í3");
+        DeviceInfo deviceFound = newDevices.Find(x => x.name == "ì‹ íƒœìš±3");
         print(deviceFound.freeWarrenty);
 
-        // º¹ÀâÇÑ ÇüÅÂÀÇ ±ÔÄ¢ÀÎ °æ¿ì, JObject, JArray
+        // ë³µì¡í•œ í˜•íƒœì˜ ê·œì¹™ì¸ ê²½ìš°, JObject, JArray
         string json3 = @"{
           'channel': {
             'title': 'ABC',
@@ -129,9 +131,9 @@ public class JsonSerialization : MonoBehaviour
 
 
         /* 
-        Person person = new Person("½ÅÅÂ¿í", 20);
+        Person person = new Person("ì‹ íƒœìš±", 20);
 
-        // °´Ã¼ -> JSON
+        // ê°ì²´ -> JSON
         string json = JsonUtility.ToJson(person);
 
         print(json);

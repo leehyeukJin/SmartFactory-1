@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,8 +22,8 @@ public class Piston : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DeviceInfo info = new DeviceInfo("½ÅÅÂ¿í", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
-
+        DeviceInfo info = new DeviceInfo("ì‹ íƒœìš±", "123456", 55555, 5555, "2024.05.30", "2026.06.30");
+        JsonSerialization.Instance.devices.Add(info);
 
         SetActiveLampDirection(!isForward, true);
 
@@ -33,22 +33,22 @@ public class Piston : MonoBehaviour
 
     public void MovePistonRod(Vector3 startPos, Vector3 endPos, float _elapsedTime, float _runTime)
     {
-        Vector3 newPos = Vector3.Lerp(startPos, endPos, _elapsedTime / _runTime); // t°ªÀÌ 0(minPos) ~ 1(maxPos) ·Î º¯È­
+        Vector3 newPos = Vector3.Lerp(startPos, endPos, _elapsedTime / _runTime); // tê°’ì´ 0(minPos) ~ 1(maxPos) ë¡œ ë³€í™”
         pistonRod.transform.localPosition = newPos;
     }
 
     public void OnDischargeObjectBtnEvent()
     {
-        print("ÀÛµ¿!");
+        print("ì‘ë™!");
         if(sensor != null && sensor.isMetalObject)
         {
-            print("¹èÃâ ¿Ï·á");
+            print("ë°°ì¶œ ì™„ë£Œ");
             OnCylinderButtonClickEvent(true);
         }
     }
 
-    // PistonRod°¡ Min, Max ±îÁö
-    // Âü°í: LocalTransform.position.y°¡ -0.3 ~ 1.75 ±îÁö ÀÌµ¿
+    // PistonRodê°€ Min, Max ê¹Œì§€
+    // ì°¸ê³ : LocalTransform.position.yê°€ -0.3 ~ 1.75 ê¹Œì§€ ì´ë™
     public void OnCylinderButtonClickEvent(bool direction)
     {
         StartCoroutine(CoMove(direction));
@@ -72,7 +72,7 @@ public class Piston : MonoBehaviour
 
             if (direction == isForward)
             {
-                print(name + " ÀüÁøÁß...");
+                print(name + " ì „ì§„ì¤‘...");
 
                 forwardButtonImg.color = Color.green;
 
@@ -80,7 +80,7 @@ public class Piston : MonoBehaviour
             }
             else
             {
-                print(name + " ÈÄÁøÁß...");
+                print(name + " í›„ì§„ì¤‘...");
 
                 backwardButtonImg.color = Color.green;
 
