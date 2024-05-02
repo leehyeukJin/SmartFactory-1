@@ -19,6 +19,7 @@ public class Conveyor : MonoBehaviour
 
         StartCoroutine(CoMovePushObject());
 
+        AudioManager.instance.SetVolume(0.5f);
         AudioManager.instance.PlayAudioClip(clip);
     }
 

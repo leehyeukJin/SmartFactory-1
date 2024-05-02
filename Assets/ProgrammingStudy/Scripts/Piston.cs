@@ -50,6 +50,9 @@ public class Piston : MonoBehaviour
     {
         StartCoroutine(CoMove(direction));
 
+        if(clip.name.Contains("screw-driver"))  
+            AudioManager.instance.SetVolume(0.5f);
+    
         AudioManager.instance.PlayAudioClip(clip);
     }
 

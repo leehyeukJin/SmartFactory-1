@@ -25,5 +25,32 @@ public class AudioManager : MonoBehaviour
         AudioClip clip = audioClips.Find(x => x == clipName);
         audioSource.clip = clip;
         audioSource.Play();
+        // 시작시 플레이타임 확인, 특정 playTimeRange만큼 재생이 되면 정지.
+    }
+
+    public void SetPlayTime(float playTimeRange)
+    {
+        StartCoroutine(CheckPlaytime(playTimeRange));
+    }
+
+    public void SetVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+
+
+    IEnumerator CheckPlaytime(float playTimeRange)
+    {
+        while (true)
+        {
+            if(audioSource.time > playTimeRange)
+            {
+                audioSource.Stop();
+                audioSource.time = 0;
+                break;
+            }
+
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
     }
 }

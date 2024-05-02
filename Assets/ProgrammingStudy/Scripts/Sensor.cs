@@ -11,6 +11,9 @@ public class Sensor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        AudioManager.instance.PlayAudioClip(clip);
+        AudioManager.instance.SetPlayTime(4f);
+
         if (other.gameObject.layer == LayerMask.NameToLayer("Object"))
         {
             isObjectDetected = true;
@@ -24,8 +27,6 @@ public class Sensor : MonoBehaviour
             {
                 print(this.gameObject.name);
             }
-
-            AudioManager.instance.PlayAudioClip(clip);
         }            
     }
 
