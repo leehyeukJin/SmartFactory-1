@@ -8,6 +8,7 @@ public class Conveyor : MonoBehaviour
     public float resetTime = 10;
     public float currentTime = 0;
     public GameObject pushObj;
+    public AudioClip clip;
     Vector3 pushObjOriginPos;
 
 
@@ -17,6 +18,8 @@ public class Conveyor : MonoBehaviour
         pushObj.SetActive(true);
 
         StartCoroutine(CoMovePushObject());
+
+        AudioManager.instance.PlayAudioClip(clip);
     }
 
     IEnumerator CoMovePushObject()

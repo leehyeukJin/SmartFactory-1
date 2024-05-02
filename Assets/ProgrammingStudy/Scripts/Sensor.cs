@@ -7,6 +7,7 @@ public class Sensor : MonoBehaviour
     public bool isObjectDetected = false; // flag 변수, bool 변수
     public bool isMetalObject = false;
     public MeshRenderer led;
+    public AudioClip clip;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,6 +24,8 @@ public class Sensor : MonoBehaviour
             {
                 print(this.gameObject.name);
             }
+
+            AudioManager.instance.PlayAudioClip(clip);
         }            
     }
 

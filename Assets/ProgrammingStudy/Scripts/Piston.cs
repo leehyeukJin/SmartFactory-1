@@ -17,6 +17,7 @@ public class Piston : MonoBehaviour
     Vector3 minPos;
     Vector3 maxPos;
     public Sensor sensor;
+    public AudioClip clip;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +49,8 @@ public class Piston : MonoBehaviour
     public void OnCylinderButtonClickEvent(bool direction)
     {
         StartCoroutine(CoMove(direction));
+
+        AudioManager.instance.PlayAudioClip(clip);
     }
 
     IEnumerator CoMove(bool direction)
