@@ -5,6 +5,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+// 컨테이너 클래스: 데이터 저장용 클래스
 public class DeviceInfo
 {
     public string name;             // 송출실린더
@@ -81,9 +82,11 @@ public class JsonSerialization : MonoBehaviour
         devices.Add(info4);
         devices.Add(info5);
 
+        // 객체(Object) -> JSON Serialization
         string json2 = JsonConvert.SerializeObject(devices);
         print(json2);
 
+        // 파일로 저장
         fs = new FileStream("Assets/file2.json", FileMode.Create); // 파일을 열고, 닫는 기본적인 입출력 기능
         sw = new StreamWriter(fs); // 문자 단위로 데이터 쓰기, 인코딩 처리
         sw.Write(json2);
@@ -92,6 +95,8 @@ public class JsonSerialization : MonoBehaviour
 
         // DeviceInfo라는 컨테이너 클래스의 모양을 알고 있을 경우 사용
         List<DeviceInfo> newDevices = new List<DeviceInfo>();
+
+        // JSON -> 객체(Object) Deserialization
         newDevices = JsonConvert.DeserializeObject<List<DeviceInfo>>(json2);
         DeviceInfo deviceFound = newDevices.Find(x => x.name == "신태욱3");
         print(deviceFound.freeWarrenty);
@@ -127,17 +132,18 @@ public class JsonSerialization : MonoBehaviour
 
         JObject jObj = JObject.Parse(json3);
         string title = (string)jObj["channel"]["title"];
-        string description = (string)jObj["channel"]["title"][1]["description"];
+        string description = (string)jObj["channel"]["item"][1]["description"];
 
 
-        /* 
+        
         Person person = new Person("신태욱", 20);
 
-        // 객체 -> JSON
-        string json = JsonUtility.ToJson(person);
+        // 객체(Object) -> JSON Serialization
+/*        string json = JsonUtility.ToJson(person);
 
         print(json);
 
+        // JSON -> 객체(Object) Deserialization
         Person person2 = JsonUtility.FromJson<Person>(json);
         print($"{person2.name}, {person2.age}");*/
     }

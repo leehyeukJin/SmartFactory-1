@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Æ¯Á¤ ±â´ÉÀ» ½ÇÇàÇÒ ¶§, ÇØ´ç ±â´É¿¡ ¸Â´Â audio clipÀ» Àç»ı
+// íŠ¹ì • ê¸°ëŠ¥ì„ ì‹¤í–‰í•  ë•Œ, í•´ë‹¹ ê¸°ëŠ¥ì— ë§ëŠ” audio clipì„ ì¬ìƒ
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance; // ½Ì±ÛÅæ °´Ã¼
+    public static AudioManager instance; // ì‹±ê¸€í†¤ ê°ì²´
     AudioSource audioSource;
     public List<AudioClip> audioClips = new List<AudioClip>();
 
@@ -17,15 +17,15 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>(); // Ä³½Ì or ·¡ÆÛ·±½Ì
+        audioSource = GetComponent<AudioSource>(); // ìºì‹± or ë˜í¼ëŸ°ì‹±
     }
 
-    public void PlayAudioClip(AudioClip clipName)
+    public void PlayAudioClip(AudioClip _clip)
     {
-        AudioClip clip = audioClips.Find(x => x == clipName);
+        AudioClip clip = audioClips.Find(x => x == _clip);
         audioSource.clip = clip;
         audioSource.Play();
-        // ½ÃÀÛ½Ã ÇÃ·¹ÀÌÅ¸ÀÓ È®ÀÎ, Æ¯Á¤ playTimeRange¸¸Å­ Àç»ıÀÌ µÇ¸é Á¤Áö.
+        // ì‹œì‘ì‹œ í”Œë ˆì´íƒ€ì„ í™•ì¸, íŠ¹ì • playTimeRangeë§Œí¼ ì¬ìƒì´ ë˜ë©´ ì •ì§€.
     }
 
     public void SetPlayTime(float playTimeRange)
