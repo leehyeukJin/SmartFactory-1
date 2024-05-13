@@ -1,7 +1,7 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using ActUtlType64Lib; // MX Component v5 Library ì‚¬ìš©
+using ActUtlType64Lib; // MX Component v5 Library »ç¿ë
 using TMPro;
 using UnityEngine.UI;
 
@@ -59,7 +59,7 @@ public class MxComponent : MonoBehaviour
     }
 
     private void Update()
-    {   /* // ì‹ í˜¸ë“±
+    {
         int valueRed = GetDevice("M100");
         if (valueRed != 0)
         {
@@ -82,50 +82,20 @@ public class MxComponent : MonoBehaviour
             redLamp.material.color = Color.black;
             yellowLamp.material.color = Color.black;
             greenLamp.material.color = Color.green;
-        }*/
-
-        /* // ì‹¤ìŠµ 1
-        int motor0 = GetDevice("M0");
-        int timer0 = GetDevice("T0");
-        int motor1 = GetDevice("M1");
-        int timer1 = GetDevice("T1");
-
-        log.text = $"motor0; {motor0}, Timer0; {timer0}\nmotor1; {motor1}, Timer1; {timer1}";
-        */
-
-        //ì‹¤ìŠµ2
-        int redlampvalue = GetDevice("Y0");
-        int yellowlampvalue = GetDevice("Y1");
-        int greenlampvalue = GetDevice("Y2");
-
-        if(redlampvalue == 1)
-        {
-            redLamp.material.color = Color.red;
         }
-
-        if (yellowlampvalue == 1)
-        {
-            redLamp.material.color = Color.yellow;
-        }
-
-        if (greenlampvalue == 1)
-        {
-            redLamp.material.color = Color.green;
-        }
-
     }
 
     int GetDevice(string device)
     {
         if (connection == Connection.Connected)
         {
-            int Data = 0;
-            int returnValue = mxComponent.GetDevice(device, out Data);
+            int lampData = 0;
+            int returnValue = mxComponent.GetDevice(device, out lampData);
 
             if (returnValue != 0)
                 print(returnValue.ToString("X"));
 
-            return Data;
+            return lampData;
         }
         else
             return 0;
@@ -138,18 +108,18 @@ public class MxComponent : MonoBehaviour
             int returnValue = mxComponent.Open();
             if(returnValue == 0)
             {
-                print("ì—°ê²°ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.");
+                print("¿¬°á¿¡ ¼º°øÇÏ¿´½À´Ï´Ù.");
 
                 connection = Connection.Connected;
             }
             else
             {
-                print("ì—°ê²°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. returnValue: 0x" + returnValue.ToString("X")); // 16ì§„ìˆ˜ë¡œ ë³€ê²½
+                print("¿¬°á¿¡ ½ÇÆĞÇß½À´Ï´Ù. returnValue: 0x" + returnValue.ToString("X")); // 16Áø¼ö·Î º¯°æ
             }
         }
         else
         {
-            print("ì—°ê²° ìƒíƒœì…ë‹ˆë‹¤.");
+            print("¿¬°á »óÅÂÀÔ´Ï´Ù.");
         }
     }
 
@@ -160,17 +130,17 @@ public class MxComponent : MonoBehaviour
             int returnValue = mxComponent.Close();
             if (returnValue == 0)
             {
-                print("ì—°ê²° í•´ì§€ë˜ì—ˆìŠµë‹ˆë‹¤.");
+                print("¿¬°á ÇØÁöµÇ¾ú½À´Ï´Ù.");
                 connection = Connection.Disconnected;
             }
             else
             {
-                print("ì—°ê²° í•´ì§€ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. returnValue: 0x" + returnValue.ToString("X")); // 16ì§„ìˆ˜ë¡œ ë³€ê²½
+                print("¿¬°á ÇØÁö¿¡ ½ÇÆĞÇß½À´Ï´Ù. returnValue: 0x" + returnValue.ToString("X")); // 16Áø¼ö·Î º¯°æ
             }
         }
         else
         {
-            print("ì—°ê²° í•´ì§€ ìƒíƒœì…ë‹ˆë‹¤.");
+            print("¿¬°á ÇØÁö »óÅÂÀÔ´Ï´Ù.");
         }
     }
 
@@ -246,9 +216,9 @@ public class MxComponent : MonoBehaviour
         }
     }
 
-    // ì‹¤ìŠµ2. ê³µê¸‰ ì‹¤ë¦°ë”(A) ì „ì§„, í›„ì§„ í›„, ì†¡ì¶œ ì‹¤ë¦°ë”(B) ì „ì§„, í›„ì§„
-    // ì¡°ê±´: ëª¨ë“  ì‹œí€€ìŠ¤ ì‘ë™ì‹œê°„ì€ 1ì´ˆ
-    // Vector3.Lerp ì‚¬ìš©
+    // ½Ç½À2. °ø±Ş ½Ç¸°´õ(A) ÀüÁø, ÈÄÁø ÈÄ, ¼ÛÃâ ½Ç¸°´õ(B) ÀüÁø, ÈÄÁø
+    // Á¶°Ç: ¸ğµç ½ÃÄö½º ÀÛµ¿½Ã°£Àº 1ÃÊ
+    // Vector3.Lerp »ç¿ë
     IEnumerator MoveCylinder(Transform cylinder, Vector3 positionA, Vector3 positionB, float duration)
     {
         float currentTime = 0;
